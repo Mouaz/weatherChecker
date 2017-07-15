@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+<ui:composition template="/template/commonLayout.xhtml">
+	<ui:define name="page_title">
+       Registration Page
+        </ui:define>
+	<ui:define name="menu">
+	</ui:define>
+	<ui:define name="content">
+		<style>
+body {
+	background-image: url("");
+}
+
+table {
+	width: 100%;
+}
+</style>
+
+
+		<center>
+			<h:form id="form">
+				<div
+					style="margin-top: 4%; margin-right: -50px; width: 50%; margin: 0 auto;">
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel styleClass="side_label" value="Name" />
+
+						<p:inputText id="name" value="#{registrationBean.user.name}"
+							placeholder="Enter name" required="true"
+							requiredMessage="Name Required" />
+						<p:outputLabel />
+
+						<p:outputLabel styleClass="side_label" value="Email" />
+						<p:inputText id="email" value="#{registrationBean.user.email}" type="email"
+							placeholder="Enter Email" required="true"
+							requiredMessage="Email Required" />
+						<p:outputLabel id="emailmessage"
+							value="#{registrationBean.errorMessageEmail}" style="color:red;" />
+
+						<p:outputLabel styleClass="side_label" value="Password" />
+						<p:password id="password" value="#{registrationBean.password}"
+							placeholder="Enter password" required="true"
+							requiredMessage="Password Required" />
+						<p:outputLabel />
+
+						<p:outputLabel styleClass="side_label"
+							value="Confirmation Password" />
+						<p:password id="sPassword"
+							value="#{registrationBean.confirmationPassword}"
+							placeholder="Enter confirmation Password" required="true"
+							requiredMessage="Confirmation Password Required" />
+						<p:outputLabel />
+
+
+						<p:link href="/index.xhtml" for="signup-btn" value="login" />
+						<p:commandButton value="Register"
+							action="#{registrationBean.save()}" update="form" />
+					</h:panelGrid>
+				</div>
+			</h:form>
+		</center>
+
+	</ui:define>
+</ui:composition>
+</html>
