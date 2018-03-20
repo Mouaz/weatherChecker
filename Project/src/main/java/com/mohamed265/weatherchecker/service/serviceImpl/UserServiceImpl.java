@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean isUniqeEmail(String email) {
-		return (userDao.selecColumntByIDNative("email", email) == null ? true : false);
+		return (userDao.selecUserByEmail(email) == null ? true : false);
 	}
 
 }

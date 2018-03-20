@@ -78,9 +78,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public String selecColumntByIDNative(String columnName, Object columnValue) {
-		Query query = em.createNativeQuery(
-				"SELECT " + columnName + " FROM user WHERE " + columnName + " = '" + columnValue + "'");
+	public String selecUserByEmail(String email) {
+		
+		Query query = em.createNamedQuery("User.selectUserByEmail");
+		query.setParameter("EMAIL", email);
 		try {
 			return (String) query.getSingleResult();
 		} catch (Exception e) {

@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @NamedQueries({ @NamedQuery(name = "User.getAll", query = "SELECT e FROM User e"),
 		@NamedQuery(name = "User.getUserById", query = "SELECT e FROM User e WHERE e.id = :ID"),
 		@NamedQuery(name = "User.deleteUser", query = "DELETE FROM User e WHERE e.id = :ID"),
-		@NamedQuery(name = "User.loginEmail", query = "SELECT e FROM User e WHERE e.email = :EMAIL and e.password = :PASSWORD") })
+		@NamedQuery(name = "User.loginEmail", query = "SELECT e FROM User e WHERE e.email = :EMAIL and e.password = :PASSWORD"),
+		@NamedQuery(name = "User.selectUserByEmail", query = "SELECT e FROM User e WHERE e.email = :EMAIL")})
 public class User {
 
 	@Id
