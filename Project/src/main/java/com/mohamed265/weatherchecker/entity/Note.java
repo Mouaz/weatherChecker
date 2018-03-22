@@ -38,6 +38,7 @@ public class Note {
 	private User user;
 
 	public Note() {
+		//to let JPA create instances out of it
 	}
 
 	/**

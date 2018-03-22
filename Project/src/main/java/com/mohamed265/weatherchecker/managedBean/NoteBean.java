@@ -21,8 +21,6 @@ import com.mohamed265.weatherchecker.util.jsf.annotation.SpringViewScoped;
 @Controller
 public class NoteBean extends BaseBean {
 	
-	//final private static Logger logger = Logger.getLogger(N.class);
-
 	@Autowired
 	private NoteService noteService;
 

@@ -1,5 +1,7 @@
 package com.mohamed265.weatherchecker.dao.daoImpl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamed265.weatherchecker.dao.DefaultDao;
 import com.mohamed265.weatherchecker.entity.Default;
+import com.mohamed265.weatherchecker.exceptions.EntityMergeException;
 
 /**
  * 
@@ -28,8 +31,12 @@ public class DefaultDaoImpl implements DefaultDao {
 
 	@Override
 	@Transactional
-	public void save(Default Default) throws Exception {
-		em.merge(Default);
+	public void save(Default theDefault) throws EntityMergeException{
+		try{
+		em.merge(theDefault);
+		}catch(Exception e){
+			throw new EntityMergeException("Save Default Exception: "+e.getMessage());
+		}
 	}
 
 	@Override
@@ -52,7 +59,7 @@ public class DefaultDaoImpl implements DefaultDao {
 			return query.getResultList();
 		} catch (Exception e) {
 			logger.error(e);
-			return null;
+			return Collections.emptyList();
 		}
 	}
 }

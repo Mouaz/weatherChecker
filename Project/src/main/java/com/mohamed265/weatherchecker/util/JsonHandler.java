@@ -6,8 +6,11 @@ import org.json.JSONObject;
 
 import com.mohamed265.weatherchecker.entity.WeatherDay;
 
-public class JsonHandler {
+public final class JsonHandler {
 
+	private JsonHandler(){
+		throw new AssertionError();
+	}
 	public static WeatherDay parseJsonToWeather(String str) {
 		JSONObject json = new JSONObject(str);
 		WeatherDay weatherDay = new WeatherDay();

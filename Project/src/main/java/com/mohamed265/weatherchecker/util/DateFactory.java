@@ -10,8 +10,14 @@ import java.util.Date;
  * @author mohamed265
  *
  */
-public class DateFactory {
+public final class DateFactory {
 
+	private DateFactory(){
+		throw new AssertionError();
+	}
+	/*
+	 * better to be changed to date api of Java 8
+	 */
 	public static Date getDate() {
 		Date date = new Date();
 		date.setHours(0);

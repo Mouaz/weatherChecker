@@ -18,6 +18,7 @@ public class MenuBean extends BaseBean {
 
 	@PostConstruct
 	public void inti() {
+		//initializing bean properties
 	}
 
 	public String navigatTo(String pagename) {

@@ -17,8 +17,11 @@ import com.mohamed265.weatherchecker.statics.FetchingStatics;
  *
  */
 @Controller
-public class FetchWeatherDay {
+public final class FetchWeatherDay {
 
+	private FetchWeatherDay() {
+	    super();
+	}
 	@Autowired
 	private static WeatherDayService weatherDayService;
 

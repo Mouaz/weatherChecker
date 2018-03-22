@@ -33,38 +33,26 @@ public class HomeBean extends BaseBean {
 	private List<Note> notes;
 
 	@PostConstruct
-	public void inti() {
+	private void initialize() {
 
 		if (!FetchingStatics.isFetching) {
 
 			if (FetchingStatics.isFetchingUncertain) {
 				weatherDay = weatherDayService.getCurrentWeatherDay();
-				FetchingStatics.isFetchingUncertain = false;
+				FetchingStatics.setFetching(false);
 				if (weatherDay != null) {
-					FetchingStatics.isFetchingSuccess = true;
-					FetchingStatics.isFetching = false;
+					FetchingStatics.setFetching(false);
+					FetchingStatics.setFetchingSuccess(true);
 					notes = noteService.getCurrentNotes(weatherDay.getValue());
 				} else {
-					weatherDay = FetchWeatherDay.fetchWeatherDay();
-					if (weatherDay != null) {
-						FetchingStatics.isFetchingSuccess = true;
-						FetchingStatics.isFetching = false;
-						weatherDayService.save(weatherDay);
-						notes = noteService.getCurrentNotes(weatherDay.getValue());
-					}
+					fetchAndSaveWeatherDay();
 				}
 
-			} else if (FetchingStatics.accessDB()) {
+			} else if (FetchingStatics.isFetchingSuccess) {
 				weatherDay = weatherDayService.getCurrentWeatherDay();
 				notes = noteService.getCurrentNotes(weatherDay.getValue());
 			} else {
-				weatherDay = FetchWeatherDay.fetchWeatherDay();
-				if (weatherDay != null) {
-					FetchingStatics.isFetchingSuccess = true;
-					FetchingStatics.isFetching = false;
-					weatherDayService.save(weatherDay);
-					notes = noteService.getCurrentNotes(weatherDay.getValue());
-				}
+				fetchAndSaveWeatherDay();
 			}
 
 		} else {
@@ -74,6 +62,15 @@ public class HomeBean extends BaseBean {
 		}
 	}
 
+	private void fetchAndSaveWeatherDay(){
+		weatherDay = FetchWeatherDay.fetchWeatherDay();
+		if (weatherDay != null) {
+			FetchingStatics.setFetchingSuccess(true);
+			FetchingStatics.setFetching(false);
+			weatherDayService.save(weatherDay);
+			notes = noteService.getCurrentNotes(weatherDay.getValue());
+		}
+	}
 	public WeatherDay getWeatherDay() {
 		return weatherDay;
 	}

@@ -3,10 +3,11 @@ package com.mohamed265.weatherchecker.dao;
 import java.util.List;
 
 import com.mohamed265.weatherchecker.entity.User;
+import com.mohamed265.weatherchecker.exceptions.EntityMergeException;
 
 public interface UserDao {
 
-	public void save(User user) throws Exception;
+	public void save(User user) throws EntityMergeException;
 
 	public void update(User user);
 

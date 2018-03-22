@@ -13,6 +13,10 @@ import com.mohamed265.weatherchecker.util.jsf.annotation.SpringApplicationScoped
 @SpringApplicationScoped
 public class FetchingStatics {
 
+	private FetchingStatics(){
+		throw new AssertionError();
+	}
+	
 	public static boolean isFetching = false;
 
 	public static boolean isFetchingSuccess = false;
@@ -21,6 +25,30 @@ public class FetchingStatics {
 
 	public static boolean accessDB(){
 		return !isFetching && isFetchingSuccess;
+	}
+
+	public static boolean isFetching() {
+		return isFetching;
+	}
+
+	public static void setFetching(boolean isFetching) {
+		FetchingStatics.isFetching = isFetching;
+	}
+
+	public static boolean isFetchingSuccess() {
+		return isFetchingSuccess;
+	}
+
+	public static void setFetchingSuccess(boolean isFetchingSuccess) {
+		FetchingStatics.isFetchingSuccess = isFetchingSuccess;
+	}
+
+	public static boolean isFetchingUncertain() {
+		return isFetchingUncertain;
+	}
+
+	public static void setFetchingUncertain(boolean isFetchingUncertain) {
+		FetchingStatics.isFetchingUncertain = isFetchingUncertain;
 	}
 
 }

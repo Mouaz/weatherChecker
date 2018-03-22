@@ -41,7 +41,7 @@ public class AdminSecurityFilter implements Filter {
 
 	@Override
 	public void destroy() {
-
+		//here we close any used resources
 	}
 
 	/*

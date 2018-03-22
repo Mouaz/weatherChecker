@@ -33,6 +33,7 @@ public class Default {
 	private String text;
 
 	public Default() {
+		//to let JPA creates instances
 	}
 
 	/**

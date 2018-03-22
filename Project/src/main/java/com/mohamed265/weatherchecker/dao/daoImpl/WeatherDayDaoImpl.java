@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamed265.weatherchecker.dao.WeatherDayDao;
 import com.mohamed265.weatherchecker.entity.WeatherDay;
+import com.mohamed265.weatherchecker.exceptions.EntityMergeException;
 
 /**
  * 
@@ -28,8 +29,12 @@ public class WeatherDayDaoImpl implements WeatherDayDao {
 
 	@Override
 	@Transactional
-	public void save(WeatherDay weatherDay) throws Exception {
+	public void save(WeatherDay weatherDay) throws EntityMergeException {
+		try{
 		em.persist(weatherDay);
+		}catch(Exception e){
+			throw new EntityMergeException("Merge weather day exception: "+e.getMessage());
+		}
 	}
 
 	@Override

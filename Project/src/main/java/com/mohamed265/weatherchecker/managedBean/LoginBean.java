@@ -25,6 +25,7 @@ public class LoginBean extends BaseBean {
 
 	@PostConstruct
 	public void inti() {
+		// initializing properties
 	}
 
 	private boolean isEmail() {

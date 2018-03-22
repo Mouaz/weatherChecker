@@ -43,6 +43,7 @@ public class WeatherDay {
 	private String description;
 
 	public WeatherDay() {
+		//to let JPA create instances out of it
 	}
 
 	public int getId() {

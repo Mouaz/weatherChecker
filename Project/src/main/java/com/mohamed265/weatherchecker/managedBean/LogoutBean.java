@@ -16,12 +16,12 @@ public class LogoutBean extends BaseBean {
 
 	@PostConstruct
 	public void inti() {
+		//initializing the bean
 	}
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		redirectToIndexPage();
-		//addInfoMessage("Logout Successfully");
 		return "index.xhtml?faces-redirect=true";
 	}
 

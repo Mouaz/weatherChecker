@@ -1,5 +1,6 @@
 package com.mohamed265.weatherchecker.dao.daoImpl;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamed265.weatherchecker.dao.NoteDao;
 import com.mohamed265.weatherchecker.entity.Note;
+import com.mohamed265.weatherchecker.exceptions.EntityMergeException;
 
 /**
  * 
@@ -28,8 +30,12 @@ public class NoteDaoImpl implements NoteDao {
 
 	@Override
 	@Transactional
-	public void save(Note note) throws Exception {
+	public void save(Note note) throws EntityMergeException {
+		try{
 		em.persist(note);
+		}catch(Exception e){
+			throw new EntityMergeException("Merge Exception for Note: "+e.getMessage());
+		}
 	}
 
 	@Override
@@ -40,7 +46,7 @@ public class NoteDaoImpl implements NoteDao {
 			return query.getResultList();
 		} catch (Exception e) {
 			logger.error(e);
-			return null;
+			return Collections.emptyList();
 		}
 	}
 
@@ -52,7 +58,7 @@ public class NoteDaoImpl implements NoteDao {
 			return query.getResultList();
 		} catch (Exception e) {
 			logger.error(e);
-			return null;
+			return Collections.emptyList();
 		}
 	}
 }

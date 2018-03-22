@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mohamed265.weatherchecker.dao.UserDao;
 import com.mohamed265.weatherchecker.entity.User;
+import com.mohamed265.weatherchecker.exceptions.EntityMergeException;
 
 /**
  * 
@@ -28,8 +29,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
-	public void save(User user) throws Exception {
+	public void save(User user) throws EntityMergeException {
+		try{
 		em.persist(user);
+		}catch(Exception e){
+			throw new EntityMergeException("Merge user exception: "+e.getMessage());
+		}
 	}
 
 	@Override

@@ -13,10 +13,13 @@ import org.apache.log4j.Logger;
  * @author mohamed265
  *
  */
-public class PropertiesReader {
+public final class PropertiesReader {
 
 	private static final Logger logger = Logger.getLogger(PropertiesReader.class);
 
+	private PropertiesReader(){
+		throw new AssertionError();
+	}
 	public static String getApiUrl() {
 		Properties prop = new Properties();
 		try {
